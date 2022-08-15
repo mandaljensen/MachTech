@@ -1,0 +1,15 @@
+.vscode
+.alpackages
+.alcache
+*.app
+**/launch.json
+**/Thumbs.db
+**/.alcache
+**/.altemplates
+**/rad.json
+
+node_modules
+dist
+dist_electron
+.env
+tsconfig.tsbuildinfo

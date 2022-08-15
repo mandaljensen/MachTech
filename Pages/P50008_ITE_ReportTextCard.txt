@@ -1,0 +1,69 @@
+page 50008 Top_ReportTextCard
+{
+    CaptionML = DAN = 'Rapporttekster',
+                ENU = 'Report texts';
+    DeleteAllowed = false;
+    InsertAllowed = false;
+    PageType = Card;
+    SourceTable = IteReportTextSetup;
+
+    layout
+    {
+        area(content)
+        {
+            group("Report text")
+            {
+                CaptionML = DAN = 'Rapporttekst',
+                            ENU = 'Report text';
+                group(ReportText)
+                {
+                    field("Default Language"; "Default Language")
+                    {
+                        CaptionML = DAN = 'Sprog',
+                                    ENU = 'Language';
+
+                        trigger OnValidate();
+                        begin
+                            CurrPage.texteditor.PAGE.SetKeys(ReportID, "Default Language");
+                            CurrPage.texteditor.PAGE.CRefresh();
+                        end;
+                    }
+                    part(texteditor; Top_ReportTextSubpage)
+                    {
+                        // To be classified
+                        // RunPageLink = ReportID = FIELD(ReportID),
+                        //              Language = FIELD("Default Language");;
+                    }
+                }
+            }
+        }
+    }
+
+    actions
+    {
+    }
+
+    trigger OnAfterGetRecord();
+    begin
+        CurrPage.texteditor.PAGE.SetKeys(ReportID, "Default Language");
+        CurrPage.texteditor.PAGE.CRefresh();
+    end;
+
+    trigger OnNewRecord(BelowxRec: Boolean);
+    begin
+        "Default Language" := GetLanguageCode(GLOBALLANGUAGE);
+    end;
+
+    var
+        Language: Record Language;
+
+    procedure GetLanguageCode(LanguageID: Integer) LangCode: Code[10];
+    begin
+        Language.SETRANGE("Windows Language ID", LanguageID);
+        IF Language.FINDFIRST THEN
+            LangCode := Language.Code
+        ELSE
+            LangCode := '';
+    end;
+}
+

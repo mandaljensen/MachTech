@@ -1,0 +1,35 @@
+page 50007 Top_ReportTextList
+{
+    CaptionML = DAN = 'Rapporttekster',
+                ENU = 'Report texts';
+    CardPageID = Top_ReportTextCard;
+    DeleteAllowed = false;
+    Editable = false;
+    InsertAllowed = false;
+    ModifyAllowed = true;
+    PageType = List;
+    RefreshOnActivate = false;
+    ShowFilter = true;
+    SourceTable = IteReportTextSetup;
+
+    layout
+    {
+        area(content)
+        {
+            repeater(Group)
+            {
+                field(ReportID; ReportID)
+                {
+                }
+                field(ReportName; ReportName)
+                {
+                }
+            }
+        }
+    }
+
+    actions
+    {
+    }
+}
+

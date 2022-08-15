@@ -1,0 +1,125 @@
+page 50005 Top_PdfEmailCard
+{
+    // version ITEpdf1.0
+
+    CaptionML = DAN = 'Pdf Email opsætning',
+                ENU = 'Pdf Email Setup';
+    DeleteAllowed = false;
+    InsertAllowed = false;
+    SourceTable = ItePdfSetup;
+
+    layout
+    {
+        area(content)
+        {
+            group(General)
+            {
+                CaptionML = DAN = 'Generelt',
+                            ENU = 'General';
+                field("Send Option"; Rec."Send Option")
+                {
+
+                    trigger OnValidate();
+                    begin
+                        SendToEnabled := (Rec."Send Option" = Rec."Send Option"::Fixed);
+                        AdrCodeEnabled := (Rec."Send Option" = Rec."Send Option"::Shiptoaddress);
+                    end;
+                }
+                field("Send To"; Rec."Send To")
+                {
+                    Enabled = SendToEnabled;
+                }
+                field("Ship-To Address Code"; Rec."Ship-To Address Code")
+                {
+                    Enabled = AdrCodeEnabled;
+                }
+                field("Send CC"; Rec."Send CC")
+                {
+                }
+                field("Send BCC"; Rec."Send BCC")
+                {
+                }
+            }
+            group(Message)
+            {
+                CaptionML = DAN = 'E-mail tekstindhold',
+                            ENU = 'E-mail message';
+                group(MessageGroup)
+                {
+                    field("Default Language"; Rec."Default Language")
+                    {
+
+                        trigger OnValidate();
+                        var
+                            LangRec: Record Language;
+                        begin
+                            CurrPage.bodyeditor.PAGE.SetKeys(Rec.ReportID, Rec."Default Language");
+                            CurrPage.bodyeditor.PAGE.CRefresh();
+                        end;
+                    }
+                    part(bodyeditor; Top_PdfEmailBodytext)
+                    {
+                        ShowFilter = false;
+                        SubPageLink = ReportID = FIELD(ReportID),
+                                      Language = FIELD("Default Language");
+                    }
+                }
+            }
+            group("File paths")
+            {
+                CaptionML = DAN = 'Filopsætning',
+                            ENU = 'File setup';
+                field(Attachment; Rec.Attachment)
+                {
+                    Editable = false;
+
+                    trigger OnAssistEdit();
+                    var
+                        FileMgt: Codeunit "File Management";
+                    begin
+                        Rec.Attachment := FileMgt.OpenFileDialog('Vælg fil', '', '');
+                    end;
+                }
+                field("Pdf achieve Path"; Rec."Pdf achieve Path")
+                {
+                    ShowCaption = false;
+                    Visible = false;
+                }
+            }
+        }
+    }
+
+    actions
+    {
+    }
+
+    trigger OnAfterGetRecord();
+    begin
+        CurrPage.bodyeditor.PAGE.SetKeys(Rec.ReportID, Rec."Default Language");
+        CurrPage.bodyeditor.PAGE.CRefresh();
+        SendToEnabled := (Rec."Send Option" = Rec."Send Option"::Fixed);
+        AdrCodeEnabled := (Rec."Send Option" = Rec."Send Option"::Shiptoaddress);
+    end;
+
+    trigger OnNewRecord(BelowxRec: Boolean);
+    begin
+        Rec."Default Language" := GetLanguageCode(GLOBALLANGUAGE);
+    end;
+
+    var
+        PageEmailBodytext: Page Top_PdfEmailBodytext;
+        RecEmailBodytext: Record ItePdfBodytext;
+        Language: Record Language;
+        SendToEnabled: Boolean;
+        AdrCodeEnabled: Boolean;
+
+    procedure GetLanguageCode(LanguageID: Integer) LangCode: Code[10];
+    begin
+        Language.SETRANGE("Windows Language ID", LanguageID);
+        IF Language.FINDFIRST THEN
+            LangCode := Language.Code
+        ELSE
+            LangCode := '';
+    end;
+}
+

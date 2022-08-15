@@ -1,0 +1,121 @@
+page 50006 Top_PdfEmailBodytext
+{
+    // version ITEpdf1.1
+
+    CaptionML = DAN = 'Rediger tekst',
+                ENU = 'Edit text';
+    LinksAllowed = false;
+    PageType = CardPart;
+    ShowFilter = false;
+    SourceTable = ItePdfBodytext;
+
+    layout
+    {
+        area(content)
+        {
+            // Caption = 'õ';
+            group(General)
+            {
+                CaptionML = DAN = 'Tekst',
+                            ENU = 'Message';
+                field(Subject; Subject)
+                {
+                }
+                field(Filename; Filename)
+                {
+                }
+                field(Bodytext; BodyText)
+                {
+                    CaptionML = DAN = '',
+                                ENU = 'Message';
+                    MultiLine = true;
+                    ShowCaption = false;
+
+                    trigger OnValidate();
+                    var
+                        tempPdfEmailBodytext: Record ItePdfBodytext;
+                    begin
+
+                        PdfEmailBodyText.SetBodyText(BodyText);
+                        PdfEmailBodyText.ReportID := ReportID;
+                        PdfEmailBodyText.Language := Language;
+                        PdfEmailBodyText.Subject := Subject;
+                        PdfEmailBodyText.Filename := Filename;
+
+                        // Insert or modify?
+                        tempPdfEmailBodytext.SETRANGE(ReportID, ReportID);
+                        tempPdfEmailBodytext.SETRANGE(Language, Language);
+                        IF tempPdfEmailBodytext.FINDSET(FALSE, FALSE) THEN
+                            PdfEmailBodyText.MODIFY
+                        ELSE
+                            PdfEmailBodyText.INSERT;
+                    end;
+                }
+            }
+        }
+    }
+
+    actions
+    {
+    }
+
+    trigger OnAfterGetRecord();
+    begin
+        BodyText := GetBodyText();
+    end;
+
+    trigger OnClosePage();
+    begin
+        Rec := PdfEmailBodyText;
+    end;
+
+    trigger OnNewRecord(BelowxRec: Boolean);
+    begin
+        BodyText := '';
+    end;
+
+    trigger OnOpenPage();
+    begin
+        //IF Language <> '' THEN
+        //  IF PdfEmailBodyText.GET(ReportID,Language) THEN
+        //    GetBodyText
+    end;
+
+    var
+        BodyText: Text;
+        PdfEmailBodyText: Record ItePdfBodytext;
+        recLanguage: Record Language;
+        pageLanguage: Page Languages;
+
+    procedure SetEmailBodytext(ReportID: Integer; Language: Code[10]);
+    var
+        OrigMailBodyText: Text;
+    begin
+        IF PdfEmailBodyText.GET(ReportID, Language) THEN BEGIN
+            OrigMailBodyText := PdfEmailBodyText.GetBodyText;
+            IF OrigMailBodyText <> '' THEN
+                BodyText := OrigMailBodyText
+            ELSE
+                PdfEmailBodyText.SetBodyText(BodyText);
+        END ELSE BEGIN // Create
+            PdfEmailBodyText.ReportID := ReportID;
+            PdfEmailBodyText.Language := Language;
+            PdfEmailBodyText.INSERT;
+        END;
+    end;
+
+    procedure SetKeys(inReportID: Integer; inLanguage: Code[10]);
+    begin
+        // Kaldes ved Default Language onValidate fra page 50702
+
+        CLEAR(PdfEmailBodyText);
+        ReportID := inReportID;
+        Language := inLanguage;
+    end;
+
+    procedure CRefresh();
+    begin
+        CurrPage.ACTIVATE(TRUE);
+    end;
+}
+

@@ -1,0 +1,246 @@
+page 50013 Top_CopyPurchaseArchive
+{
+    // version NAVW17.00
+
+    CaptionML = DAN = 'Kopiér købsarkiv', ENU = 'Copy Purchase Archive';
+    Editable = false;
+    PageType = List;
+    SourceTable = "Purchase Header Archive";
+
+    layout
+    {
+        area(content)
+        {
+            repeater(Content2)
+            {
+                field(selected; selected)
+                {
+                    Style = StrongAccent;
+                    StyleExpr = TRUE;
+
+                    trigger OnAssistEdit();
+                    var
+                        Answer: Boolean;
+                    begin
+                        Answer := DIALOG.CONFIRM('Overf¢r linjer fra ordre: %1', TRUE, Rec."No.");
+
+                        IF Answer = TRUE THEN
+                            FindLines();
+                    end;
+                }
+                field("Version No."; "Version No.")
+                {
+                }
+                field("No."; "No.")
+                {
+                }
+                field("Date Archived"; "Date Archived")
+                {
+                }
+                field("Time Archived"; "Time Archived")
+                {
+                }
+                field("Archived By"; "Archived By")
+                {
+                }
+                field("Interaction Exist"; "Interaction Exist")
+                {
+                }
+                field("Buy-from Vendor No."; "Buy-from Vendor No.")
+                {
+                }
+                field("Order Address Code"; "Order Address Code")
+                {
+                    Visible = false;
+                }
+                field("Buy-from Vendor Name"; "Buy-from Vendor Name")
+                {
+                }
+                field("Vendor Authorization No."; "Vendor Authorization No.")
+                {
+                }
+                field("Buy-from Post Code"; "Buy-from Post Code")
+                {
+                    Visible = false;
+                }
+                field("Buy-from Country/Region Code"; "Buy-from Country/Region Code")
+                {
+                    Visible = false;
+                }
+                field("Buy-from Contact"; "Buy-from Contact")
+                {
+                    Visible = false;
+                }
+                field("Pay-to Vendor No."; "Pay-to Vendor No.")
+                {
+                    Visible = false;
+                }
+                field("Pay-to Name"; "Pay-to Name")
+                {
+                    Visible = false;
+                }
+                field("Pay-to Post Code"; "Pay-to Post Code")
+                {
+                    Visible = false;
+                }
+                field("Pay-to Country/Region Code"; "Pay-to Country/Region Code")
+                {
+                    Visible = false;
+                }
+                field("Pay-to Contact"; "Pay-to Contact")
+                {
+                    Visible = false;
+                }
+                field("Ship-to Code"; "Ship-to Code")
+                {
+                    Visible = false;
+                }
+                field("Ship-to Name"; "Ship-to Name")
+                {
+                    Visible = false;
+                }
+                field("Ship-to Post Code"; "Ship-to Post Code")
+                {
+                    Visible = false;
+                }
+                field("Ship-to Country/Region Code"; "Ship-to Country/Region Code")
+                {
+                    Visible = false;
+                }
+                field("Ship-to Contact"; "Ship-to Contact")
+                {
+                    Visible = false;
+                }
+                field("Posting Date"; "Posting Date")
+                {
+                    Visible = false;
+                }
+                field("Shortcut Dimension 1 Code"; "Shortcut Dimension 1 Code")
+                {
+                    Visible = false;
+                }
+                field("Shortcut Dimension 2 Code"; "Shortcut Dimension 2 Code")
+                {
+                    Visible = false;
+                }
+                field("Location Code"; "Location Code")
+                {
+                    Visible = true;
+                }
+                field("Purchaser Code"; "Purchaser Code")
+                {
+                    Visible = false;
+                }
+                field("Currency Code"; "Currency Code")
+                {
+                    Visible = false;
+                }
+            }
+        }
+        area(factboxes)
+        {
+            systempart(Links; Links)
+            {
+                Visible = false;
+            }
+            systempart(Notes; Notes)
+            {
+                Visible = false;
+            }
+        }
+    }
+
+    actions
+    {
+        area(navigation)
+        {
+            group("&Linje")
+            {
+                CaptionML = DAN = '&Linje',
+                            ENU = '&Line';
+                Image = Line;
+                action(Card)
+                {
+                    CaptionML = DAN = 'Kort',
+                                ENU = 'Card';
+                    Image = EditLines;
+                    ShortCutKey = 'Shift+F7';
+
+                    trigger OnAction();
+                    begin
+                        CASE "Document Type" OF
+                            "Document Type"::Order:
+                                PAGE.RUN(PAGE::"Purchase Order Archive", Rec);
+                            "Document Type"::Quote:
+                                PAGE.RUN(PAGE::"Purchase Quote Archive", Rec);
+                            "Document Type"::"Return Order":
+                                PAGE.RUN(PAGE::"Purchase Return Order Archive", Rec);
+                        END;
+                    end;
+                }
+            }
+        }
+    }
+
+    trigger OnAfterGetRecord();
+    begin
+        selected := 'OVERF¥R';
+    end;
+
+    var
+        selected: Text[30];
+        myNo: Code[10];
+
+    local procedure FindLines() ReturnVal: Integer;
+    var
+        PurchLineNew: Record "Purchase Line";
+        PurchLineArch: Record "Purchase Line Archive";
+        lineno: Integer;
+        ITEuser: Codeunit "ITE users";
+    begin
+
+        CLEAR(PurchLineNew);
+        CLEAR(PurchLineArch);
+
+        lineno := 0;
+
+        PurchLineNew.SETRANGE(PurchLineNew."Document No.", myNo);
+        IF PurchLineNew.FINDSET(FALSE, FALSE) THEN BEGIN
+            REPEAT
+                IF PurchLineNew."Line No." > lineno THEN
+                    lineno := PurchLineNew."Line No."
+            UNTIL PurchLineNew.NEXT = 0;
+        END;
+
+        CLEAR(PurchLineNew);
+
+
+        PurchLineArch.SETFILTER(PurchLineArch."Document No.", Rec."No.");
+        PurchLineArch.SETFILTER(PurchLineArch."Version No.", FORMAT(Rec."Version No."));
+
+        IF PurchLineArch.FINDSET(FALSE, FALSE) THEN BEGIN
+            REPEAT
+                lineno := lineno + 10000;
+                PurchLineNew.TRANSFERFIELDS(PurchLineArch);
+                PurchLineNew."Document Type" := PurchLineNew."Document Type"::Order;
+                PurchLineNew."Document No." := FORMAT(myNo);
+                PurchLineNew."Line No." := lineno;
+                PurchLineNew.VALIDATE(PurchLineNew."Expected Receipt Date");
+                purchlinenew.TopCreatedBy := ITEuser.GetUser();
+                PurchLineNew."Quantity Received" := 0;
+                PurchLineNew."Quantity Invoiced" := 0;
+
+                PurchLineNew.VALIDATE(PurchLineNew.Quantity);
+                PurchLineNew.INSERT;
+            UNTIL PurchLineArch.NEXT = 0;
+        END;
+
+        CurrPage.CLOSE;
+    end;
+
+    procedure SetOrderNo(inNo: Code[10]);
+    begin
+        myNo := inNo;
+    end;
+}
+

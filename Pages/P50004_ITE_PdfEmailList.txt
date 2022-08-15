@@ -1,0 +1,32 @@
+page 50004 Top_PdfEmailList
+{
+    // version ITEpdf1.0
+
+    CaptionML = DAN = 'Opsætning af Pdf Email',
+                ENU = 'Pdf Email Setup';
+    CardPageID = Top_PdfEmailCard;
+    DeleteAllowed = false;
+    Editable = false;
+    InsertAllowed = false;
+    PageType = List;
+    SourceTable = ItePdfSetup;
+
+    layout
+    {
+        area(content)
+        {
+            repeater(Group)
+            {
+                field(ReportID; Rec.ReportID)
+                {
+                    Editable = true;
+                }
+            }
+        }
+    }
+
+    actions
+    {
+    }
+}
+

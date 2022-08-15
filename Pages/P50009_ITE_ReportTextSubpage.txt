@@ -1,0 +1,104 @@
+page 50009 Top_ReportTextSubpage
+{
+    CaptionML = DAN = 'Rediger tekst',
+                ENU = 'Edit text';
+    LinksAllowed = false;
+    PageType = CardPart;
+    RefreshOnActivate = true;
+    ShowFilter = false;
+    SourceTable = IteReportTextCard;
+
+    layout
+    {
+        area(content)
+        {
+            // Caption = '-';
+            group(General)
+            {
+                CaptionML = DAN = '  ',
+                            ENU = ' ';
+                field(RepText; RepText)
+                {
+                    CaptionML = DAN = 'Rapporttekst',
+                                ENU = ' Report Text';
+                    MultiLine = true;
+                    ShowCaption = false;
+
+                    trigger OnValidate();
+                    var
+                        tempReporttext: Record IteReportTextCard;
+                    begin
+                        recReportText.SetReportText(RepText);
+                        recReportText.ReportID := ReportID;
+                        recReportText.Language := Language;
+
+                        // Insert or modify?
+                        tempReporttext.SETRANGE(ReportID, ReportID);
+                        tempReporttext.SETRANGE(Language, Language);
+                        IF tempReporttext.FINDSET(FALSE, FALSE) THEN
+                            recReportText.MODIFY
+                        ELSE
+                            recReportText.INSERT;
+                    end;
+                }
+            }
+        }
+    }
+
+    actions
+    {
+    }
+
+    trigger OnAfterGetRecord();
+    begin
+        RepText := GetReportText();
+    end;
+
+    trigger OnClosePage();
+    begin
+        Rec := recReportText;
+    end;
+
+    trigger OnNewRecord(BelowxRec: Boolean);
+    begin
+        RepText := '';
+    end;
+
+    var
+        RepText: Text;
+        recReportText: Record IteReportTextCard;
+        recLanguage: Record Language;
+        pageLanguage: Page Languages;
+
+    procedure SetReporttext(ReportID: Integer; Language: Code[10]);
+    var
+        OrigText: Text;
+    begin
+        IF recReportText.GET(ReportID, Language) THEN BEGIN
+            OrigText := recReportText.GetReportText;
+            IF OrigText <> '' THEN
+                RepText := OrigText
+            ELSE
+                recReportText.SetReportText(RepText);
+        END ELSE BEGIN // Create
+            recReportText.ReportID := ReportID;
+            recReportText.Language := Language;
+            recReportText.INSERT;
+        END;
+    end;
+
+    procedure SetKeys(inReportID: Integer; inLanguage: Code[10]);
+    begin
+        // Kaldes ved Default Language onValidate fra page 50705
+
+        CLEAR(ReportText);
+        ReportID := inReportID;
+        Language := inLanguage;
+    end;
+
+    procedure CRefresh();
+    begin
+        CurrPage.ACTIVATE(TRUE);
+    end;
+}
+

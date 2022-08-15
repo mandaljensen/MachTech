@@ -1,0 +1,29 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "name": "Configuration Extension",
+  "publisher": "Configuration Designer",
+  "version": "1.0.0.0",
+  "runtime": "4.4",
+  "showMyCode": true,
+  "target": "Cloud",
+  "dependencies": [
+    {
+      "id": "437dbf0e-84ff-417a-965d-ed2bb9650972",
+      "name": "Base Application",
+      "version": "15.10.44664.0",
+      "publisher": "Microsoft"
+    },
+    {
+      "id": "2bc6ba44-b51a-4f17-9508-5aae8b36a747",
+      "name": "MachTech",
+      "version": "15.0.0.30",
+      "publisher": "To-Plus A/S"
+    },
+    {
+      "id": "63ca2fa4-4f03-4f2b-a480-172fef340d3f",
+      "name": "System Application",
+      "version": "15.10.44664.0",
+      "publisher": "Microsoft"
+    }
+  ]
+}

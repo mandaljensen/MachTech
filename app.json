@@ -1,0 +1,50 @@
+{
+  "id": "2bc6ba44-b51a-4f17-9508-5aae8b36a747",
+  "name": "MachTech",
+  "publisher": "To-Plus A/S",
+  "version": "15.0.5.0",
+  "brief": "",
+  "description": "Solution is upgraded from NAV 2015",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "https://to-plus.dk/",
+  "logo": "ToPlusLogo.png",
+  "dependencies": [
+    {
+      "appId": "63ca2fa4-4f03-4f2b-a480-172fef340d3f",
+      "publisher": "Microsoft",
+      "name": "System Application",
+      "version": "1.0.0.0"
+    },
+    {
+      "appId": "437dbf0e-84ff-417a-965d-ed2bb9650972",
+      "publisher": "Microsoft",
+      "name": "Base Application",
+      "version": "15.0.0.0"
+    },
+    {
+      "appId": "c1335042-3002-4257-bf8a-75c898ccb1b8",
+      "publisher": "Microsoft",
+      "name": "Application",
+      "version": "15.0.0.0"
+
+    }
+  ],
+  "screenshots": [],
+  "platform": "15.0.0.0",
+  "idRanges": [
+    {
+      "from": 50000,
+      "to": 50099
+    }
+  ],
+  "contextSensitiveHelpUrl": "https://MachTechBC365_version_15.com/help/",
+  "showMyCode": true,
+  "runtime": "4.0",
+  "target": "OnPrem",
+  "features": [
+    "GenerateCaptions",
+    "TranslationFile"
+  ]
+}
