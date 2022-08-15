@@ -39,15 +39,14 @@ pageextension 50015 Top_ReqWorkSheetExt extends "Req. Worksheet"
                 Editable = false;
             }
         }
-        /*         addafter("Vendor No.")
-                {
-                    field("Vendor Name"; "Vendor Name")
-                    {
-                        ApplicationArea = All;
-                        ToolTip = 'Specifies the value of the Vendor Name field.';
-                    }
-                }
-         */
+        addafter("Vendor No.")
+        {
+            field("Vendor Name"; "Vendor Name")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Vendor Name field.';
+            }
+        }
     }
 
     trigger OnAfterGetRecord()

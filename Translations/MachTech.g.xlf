@@ -1328,6 +1328,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Top_ReqWorkSheetExt - Control TopSwCat - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="PageExtension 794348639 - Control 3119688693 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2459894850">
+          <source>Specifies the value of the Vendor Name field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Top_ReqWorkSheetExt - Control Vendor Name - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="TableExtension 1399919185 - Field 197511132 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
           <source>Category-1</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1367,6 +1372,11 @@
           <source>Person Responsible</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension TopJobExt - Field TopPersonResponsible - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 223670548 - Field 3119688693 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3755718006">
+          <source>Vendor Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension TopRequisitionLineExt - Field Vendor Name - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 3577109400 - Field 2450853806 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3185722403">
           <source>TopAttachment</source>

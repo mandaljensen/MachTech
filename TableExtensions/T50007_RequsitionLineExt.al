@@ -33,12 +33,12 @@ tableextension 50007 TopRequisitionLineExt extends "Requisition Line"
             TableRelation = "Production BOM Header";
             CaptionML = ENU = 'Prod. BOM (MT)', DAN = 'Prod. Stykliste (MT)';
         }
-        /* field(50007; "Vendor Name"; Text[100])
+        field(50007; "Vendor Name"; Text[100])
         {
             FieldClass = FlowField;
             CalcFormula = lookup(Vendor.Name where("No." = field("Vendor No.")));
             Editable = false;
-        } */
+        }
     }
 
     var
