@@ -118,6 +118,76 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Top_MachineList - Action MachineList - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 567392613 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Job - Outstanding Purchase</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - NamedType 3285233284" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Outstanding Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType AmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - NamedType 2833281111" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType DocNoCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - NamedType 3924074436" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType ItemDescCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - NamedType 581024604" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType ItemNoCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - NamedType 1710099152" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bill-to Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType JobBillToNameCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - NamedType 2279960886" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType JobDescCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - NamedType 1412325838" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Job No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType JobNoCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - NamedType 1085275642" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType LineAmountCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - NamedType 650077689" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType PageCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - NamedType 3246368361" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType QuantityCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - NamedType 2455657654" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Outstanding Purchase per Job</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType ReportTitleCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - NamedType 1583171122" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType TotalCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - Control 3461750827 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show details</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - Control ShowDetails - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 575194160 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Purchase Order</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1362,6 +1432,16 @@
           <source>Type Number</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension TopItemExt - Change Description 2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2281468647 - Field 3110254301 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2818324089">
+          <source>PO Outs. Amt. Ex. VAT (LCY)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension TopJobExt - Field PO. Outs. Amt. Ex.VAT (LCY) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2281468647 - Field 2684030084 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2818324089">
+          <source>PO Amt. Rcd. Not Inv. Ex. VAT (LCY)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension TopJobExt - Field PO.A.Rcd. Not Inv.Ex.VAT (LCY) - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2281468647 - Field 593410017 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2818324089">
           <source>External Document No.</source>
