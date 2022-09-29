@@ -128,6 +128,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType AmountCaptionLbl</note>
         </trans-unit>
+        <trans-unit id="Report 567392613 - NamedType 3435191393" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Vendor Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType BuyFromVendorNameCaptionLbl</note>
+        </trans-unit>
         <trans-unit id="Report 567392613 - NamedType 2833281111" size-unit="char" translate="yes" xml:space="preserve">
           <source>Document No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -167,6 +172,11 @@
           <source>Page</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType PageCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - NamedType 122545475" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rec. Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType PromisedReceiptDateLbl</note>
         </trans-unit>
         <trans-unit id="Report 567392613 - NamedType 3246368361" size-unit="char" translate="yes" xml:space="preserve">
           <source>Quantity</source>

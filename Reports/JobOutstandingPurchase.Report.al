@@ -5,6 +5,7 @@ report 50002 "Job - Outstanding Purchase"
     UsageCategory = ReportsAndAnalysis;
     DefaultLayout = RDLC;
     RDLCLayout = './Reports/JobOutstandingPurchase.rdlc';
+
     dataset
     {
         dataitem(Job; Job)
@@ -48,6 +49,10 @@ report 50002 "Job - Outstanding Purchase"
                 { }
                 column(Document_No_; "Document No.")
                 { }
+                column(BuyFromVendorNameCaptionLbl; BuyFromVendorNameCaptionLbl)
+                { }
+                column(VendorName; PurchaseHeader."Buy-from Vendor Name")
+                { }
                 column(ItemNoCaptionLbl; ItemNoCaptionLbl)
                 { }
                 column(No_; "No.")
@@ -55,6 +60,10 @@ report 50002 "Job - Outstanding Purchase"
                 column(ItemDescCaptionLbl; ItemDescCaptionLbl)
                 { }
                 column(ItemDescription; Description)
+                { }
+                column(PromisedReceiptDateLbl; PromisedReceiptDateLbl)
+                { }
+                column(Promised_Receipt_Date; "Promised Receipt Date")
                 { }
                 column(QuantityCaptionLbl; QuantityCaptionLbl)
                 { }
@@ -64,6 +73,12 @@ report 50002 "Job - Outstanding Purchase"
                 { }
                 column(OutstandingAmt; "Outstanding Amt. Ex. VAT (LCY)" + "A. Rcd. Not Inv. Ex. VAT (LCY)")
                 { }
+
+                trigger OnAfterGetRecord()
+                begin
+                    if not PurchaseHeader.Get("Document Type", "Document No.") then
+                        Clear(PurchaseHeader);
+                end;
             }
 
             trigger OnAfterGetRecord()
@@ -76,6 +91,8 @@ report 50002 "Job - Outstanding Purchase"
     }
     requestpage
     {
+        SaveValues = true;
+
         layout
         {
             area(content)
@@ -93,6 +110,7 @@ report 50002 "Job - Outstanding Purchase"
     }
 
     var
+        PurchaseHeader: Record "Purchase Header";
         ShowDetails: Boolean;
         ReportTitleCaptionLbl: Label 'Outstanding Purchase per Job';
         PageCaptionLbl: Label 'Page';
@@ -104,6 +122,8 @@ report 50002 "Job - Outstanding Purchase"
         DocNoCaptionLbl: label 'Document No.';
         ItemNoCaptionLbl: label 'Item No.';
         ItemDescCaptionLbl: Label 'Description';
+        PromisedReceiptDateLbl: Label 'Rec. Date';
         QuantityCaptionLbl: Label 'Quantity';
         LineAmountCaptionLbl: Label 'Amount';
+        BuyFromVendorNameCaptionLbl: Label 'Vendor Name';
 }
