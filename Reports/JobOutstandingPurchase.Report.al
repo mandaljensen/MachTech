@@ -69,6 +69,10 @@ report 50002 "Job - Outstanding Purchase"
                 { }
                 column(Quantity; Quantity)
                 { }
+                column(Quantity_InvoicedCaption; InvQuantityCaptionLbl)
+                { }
+                column(Quantity_Invoiced; "Quantity Invoiced")
+                { }
                 column(LineAmountCaptionLbl; LineAmountCaptionLbl)
                 { }
                 column(OutstandingAmt; "Outstanding Amt. Ex. VAT (LCY)" + "A. Rcd. Not Inv. Ex. VAT (LCY)")
@@ -99,9 +103,11 @@ report 50002 "Job - Outstanding Purchase"
             {
                 group(Settings)
                 {
+                    Caption = 'Settings';
                     field(ShowDetails; ShowDetails)
                     {
                         Caption = 'Show details';
+                        ToolTip = 'Activate to show Purchase Order Lines.';
                     }
                 }
             }
@@ -124,6 +130,7 @@ report 50002 "Job - Outstanding Purchase"
         ItemDescCaptionLbl: Label 'Description';
         PromisedReceiptDateLbl: Label 'Rec. Date';
         QuantityCaptionLbl: Label 'Quantity';
+        InvQuantityCaptionLbl: Label 'Inv. Quantity';
         LineAmountCaptionLbl: Label 'Amount';
         BuyFromVendorNameCaptionLbl: Label 'Vendor Name';
 }

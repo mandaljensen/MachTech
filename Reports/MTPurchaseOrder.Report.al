@@ -922,9 +922,13 @@ report 50001 "MT Purchase Order"
 
                 DimSetEntry1.SetRange("Dimension Set ID", "Dimension Set ID");
 
-                if not IsReportInPreviewMode then
+                if not IsReportInPreviewMode then begin
                     if ArchiveDocument then
                         ArchiveManagement.StorePurchDocument("Purchase Header", LogInteraction);
+
+                    "Purchase Header".Validate(TopPurchaseStatus, TopPurchaseStatus::"Purchase sent");
+                    "Purchase Header".Modify(true);
+                end;
             end;
 
             trigger OnPostDataItem()

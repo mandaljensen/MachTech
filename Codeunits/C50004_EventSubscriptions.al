@@ -1,16 +1,17 @@
 codeunit 50004 TopEventSubscripments
 {
-    [EventSubscriber(ObjectType::Page, 50, 'OnAfterActionEvent', 'SendCustom', TRUE, TRUE)]
-    local procedure MarkStatusOnPurchase(var Rec: Record "Purchase Header")
-    var
+    // [EventSubscriber(ObjectType::Page, 50, 'OnAfterActionEvent', 'SendCustom', TRUE, TRUE)]
+    // local procedure MarkStatusOnPurchase(var Rec: Record "Purchase Header")
+    // var
     /*PurchaseHeader: Record "Purchase Header";
     mailman: Codeunit "Mail Management";*/
-    begin
-        Rec.Validate(TopPurchaseStatus, Rec.TopPurchaseStatus::"Purchase sent");
-        /*PurchaseHeader.get(Rec."Document Type", rec."No.");
-        PurchaseHeader.TopPurchaseStatus := Rec.TopPurchaseStatus::"Purchase sent";
-        PurchaseHeader.Modify();*/
-    end;
+    //begin
+    //Rec.Validate(TopPurchaseStatus, Rec.TopPurchaseStatus::"Purchase sent");
+    //Rec.Modify(true);
+    /*PurchaseHeader.get(Rec."Document Type", rec."No.");
+    PurchaseHeader.TopPurchaseStatus := Rec.TopPurchaseStatus::"Purchase sent";
+    PurchaseHeader.Modify();*/
+    //end;
 
     [EventSubscriber(ObjectType::Table, 38, 'OnAfterValidateEvent', 'Buy-from Vendor No.', TRUE, TRUE)]
     local procedure SetDueDateToBlank(var Rec: Record "Purchase Header")
@@ -138,6 +139,12 @@ codeunit 50004 TopEventSubscripments
     begin
         if Job.TopExternalDocNo <> '' then
             SalesHeader.Validate("External Document No.", Job.TopExternalDocNo);
+
+        If Job."Bill-to Contact No." <> '' then
+            SalesHeader.Validate("Bill-to Contact No.", Job."Bill-to Contact No.")
+        else
+            if Job."Bill-to Contact" <> '' then
+                SalesHeader.Validate("Bill-to Contact", Job."Bill-to Contact");
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Req. Wksh.-Make Order", 'OnBeforePurchOrderLineInsert', '', true, false)]

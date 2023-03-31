@@ -165,6 +165,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType DocNoCaptionLbl</note>
         </trans-unit>
+        <trans-unit id="Report 567392613 - NamedType 656486634" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Inv. Quantity</source>
+          <target>Fakt. antal</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType InvQuantityCaptionLbl</note>
+        </trans-unit>
         <trans-unit id="Report 567392613 - NamedType 3924074436" size-unit="char" translate="yes" xml:space="preserve">
           <source>Description</source>
           <target>Beskrivelse</target>
@@ -230,6 +236,18 @@
           <target>I alt</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - NamedType TotalCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - Control 698539839 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Settings</source>
+          <target>Indstillinger</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - Control Settings - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 567392613 - Control 3461750827 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Activate to show Purchase Order Lines.</source>
+          <target>Aktiver for at vise købsordrelinjer.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Job - Outstanding Purchase - Control ShowDetails - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Report 567392613 - Control 3461750827 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Show details</source>
